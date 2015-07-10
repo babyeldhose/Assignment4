@@ -150,12 +150,13 @@ public class productdetails {
            return "Not able to  connect";
        }
        else {
-            String query="INSERT INTO products (name,decription,quantity) VALUES (?,?,?)";
+            String query="INSERT INTO products (product_id,name,decription,quantity) VALUES (?,?,?)";
             PreparedStatement prestmt=conn.prepareStatement(query);
-            prestmt.setNString(1, pdtmap.get("product_id"));
-            prestmt.setNString(2, pdtmap.get("name"));
-            prestmt.setNString(3, pdtmap.get("description"));
-            prestmt.setNString(4, pdtmap.get("quantity"));
+            prestmt.setInt(1, Integer.parseInt(pdtmap.get ("product_id")));
+            prestmt.setString(2, pdtmap.get("name"));
+            prestmt.setString(3, pdtmap.get("description"));
+            prestmt.setInt(4, Integer.parseInt(pdtmap.get("quantity")));
+            prestmt.executeUpdate();
             return " the row has been inserted into the database";
            }
        
@@ -194,12 +195,12 @@ public class productdetails {
            return "Not able to connect";
        }
        else {
-            String query="UPDATE products SET  name = ?, SET decription = ?, SET quantity = ? WHERE id = ? ";
-            PreparedStatement prestmt=conn.prepareStatement(query);
-            prestmt.setInt(4, id);
-            prestmt.setNString(1, pdtmap.get("name"));
-            prestmt.setNString(2,pdtmap.get("description"));
-            prestmt.setNString(3, pdtmap.get("quantity"));
+            String query="UPDATE product SET  name = ?, description = ?, quantity = ? WHERE product_id =?" ;          PreparedStatement pstmt=conn.prepareStatement(query);
+            pstmt.setString(1, pdtmap.get("name"));
+            pstmt.setString(2, pdtmap.get("description"));
+            pstmt.setInt(3, Integer.parseInt(pdtmap.get("quantity")));
+            pstmt.setInt(4, id);
+            pstmt.executeUpdate();
             return "row has been updated into the database";
            }
    

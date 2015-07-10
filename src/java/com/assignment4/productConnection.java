@@ -22,7 +22,7 @@ public class productConnection {
         }
 
         try {
-            String jdbc = "jdbc:mysql://ipro.lambton.on.ca/inventory";
+            String jdbc = "jdbc:mysql://localhost/mydatabase";
             conn = DriverManager.getConnection(jdbc, "products", "products");
         } catch (SQLException ex) {
             System.err.println("Failed to Connect: " + ex.getMessage());
